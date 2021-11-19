@@ -1,0 +1,48 @@
+Part One:Setting up Postgres in a docker container by following commands as shown:
+
+C:\Users\DELL G7>docker pull postgres:alphine 
+
+followed by
+
+C:\Users\DELL G7>docker images
+
+followed by 
+
+C:\Users\DELL G7>docker run --name postgres-0 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine 
+
+followed by 
+
+postgres=# create database test1;
+
+and output would be:
+CREATE DATABASE 
+
+followed by:
+postgres=# \c test 
+
+
+Now we will import dataset in form of csv into postgresql by following command:
+
+The commands for the same are:
+
+CREATE TABLE Public."anime1"(anime_id INT PRIMARY KEY,title TEXT);
+select * from Public."anime1"
+
+COPY PUBLIC ."anime1" FROM 'C:\Users\DELL G7\Downloads\data1 - DATA (1).csv' DELIMITER ',' CSV HEADER;
+
+
+Part Two: Settig up Jupyter in another docker container
+
+docker run -p 8888:8888 -v $(pwd):/home/jovyan/work jupyter/scipy-notebook
+(It would start  Pulling from jupyter/scipy-notebook ).
+
+showing : Status: Downloaded newer image for jupyter/scipy-notebook:latest 
+
+
+
+and finally to run jupyter notebook with help of docker,the following command is to be used:
+docker run -p 8888:8888 jupyter/minimal-notebook 
+Prior to that,links would be generated for accesing that jupyter file in browser.
+
+
+
